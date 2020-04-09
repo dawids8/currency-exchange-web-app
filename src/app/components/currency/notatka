@@ -1,0 +1,98 @@
+<style>
+  body {
+    background: black;
+    /*background-image: url("https://www.itl.cat/pngfile/big/157-1572191_hd-wallpapers-for-website-background-cool-background-image.jpg");*/
+  }
+
+  #title {
+    margin-top: 200px;
+    text-align: center;
+    text-shadow: 0 1px 1px;
+    font-family: "Arial Black",serif;
+    font-size: 3.5em;
+    font-weight: bold;
+    color: white;
+  }
+
+  .functionality-container {
+    align-items: center;
+    margin-top: 60px;
+    margin-left: 37%;
+  }
+
+  #inputValue, #fromCurrency, #toCurrency, #calculateButton {
+    float: left;
+  }
+
+  #inputValue {
+    padding: 15px;
+  }
+
+  #fromCurrency {
+    padding: 15px;
+    width: 100px;
+  }
+
+  #toCurrency {
+    padding: 15px;
+  }
+
+  #calculateButton {
+    padding: 15px;
+    width: 80px;
+    height: 60px;
+    text-align: center;
+  }
+
+  #result {
+    margin-top: 150px;
+    text-align: center;
+    clear: both;
+  }
+
+</style>
+
+<body>
+
+<p id="title">Currency Converter</p>
+
+<div class="functionality-container">
+
+<!--        <input type="text" id="inputValue" #amount>-->
+
+<!--      <mat-form-field id="fromCurrency">-->
+<!--        <mat-label>From</mat-label>-->
+
+<!--        <mat-select #fromCurrency>-->
+<!--          <mat-option *ngFor="let type of currencyTypes">{{ type }}</mat-option>-->
+<!--        </mat-select>-->
+
+<!--      </mat-form-field>-->
+
+  <!--    <mat-form-field id="toCurrency">-->
+  <!--      <mat-label>From</mat-label>-->
+  <!--      <mat-select #toCurrency>-->
+  <!--        <mat-option *ngFor="let type of currencyTypes">{{ type }}</mat-option>-->
+  <!--      </mat-select>-->
+  <!--    </mat-form-field>-->
+
+
+  <!--    <button id="calculateButton" (click)="calculateCurrencyValue(fromCurrency.accessKey, toCurrency.accessKey, amount.value)">-->
+  <!--      Calculate-->
+  <!--    </button>-->
+
+</div>
+
+  <mat-select>
+    <mat-option>None</mat-option>
+    <mat-option value="option1">Option 1</mat-option>
+    <mat-option value="option2">Option 2</mat-option>
+    <mat-option value="option3">Option 3</mat-option>
+  </mat-select>
+
+
+<div id="result">
+  {{result}}
+</div>
+
+</body>

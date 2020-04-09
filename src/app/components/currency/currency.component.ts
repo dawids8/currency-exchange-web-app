@@ -11,19 +11,22 @@ export class CurrencyComponent implements OnInit {
 
   currencyTypes: Array<string> = Object.keys(Currencies).filter(k => typeof Currencies[k as any] === 'number');
   currencyObject: CurrencyObject;
+  amount: string;
+  fromCurrency: string;
+  toCurrency: string;
   result: number;
 
   constructor(private currencyService: CurrencyService) {}
 
   ngOnInit(): void {}
 
-  calculateCurrencyValue(fromCurrency: string, toCurrency: string, valueToExchange: number) {
-    this.loadExchangeRates(fromCurrency);
+  calculateCurrencyValue(): string {
+    this.loadExchangeRates(this.fromCurrency);
     let value = 0;
 
     for (const ratesKey in this.currencyObject.rates) {
-      if (ratesKey === toCurrency) {
-        value = this.currencyObject.rates[ratesKey] * valueToExchange;
+      if (ratesKey === this.toCurrency) {
+        value = this.currencyObject.rates[ratesKey] * Number(this.amount);
       }
     }
 
