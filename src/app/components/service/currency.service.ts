@@ -9,8 +9,8 @@ export class CurrencyService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getValues(currencyType: string): Observable<CurrencyObject> {
-    const param = new HttpParams().set('base', currencyType);
+  public getValues(type: string): Observable<CurrencyObject> {
+    const param = new HttpParams().set('base', type);
     return this.httpClient.get<CurrencyObject>('https://api.exchangeratesapi.io/latest', {params: param});
   }
 }
