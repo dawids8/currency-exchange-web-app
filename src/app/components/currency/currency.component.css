@@ -21,6 +21,21 @@ body {
   align-items: center;
   margin-top: 60px;
   margin-left: 34%;
+  float: left;
+}
+
+#disableButton {
+  float: left;
+  margin-top: 72px;
+}
+
+/deep/ .mat-tooltip {
+  font-size: 13px;
+}
+
+button:disabled,
+button[disabled]{
+  border: 1px solid yellow;
 }
 
 #amount {
@@ -62,8 +77,17 @@ body {
   padding-right: 15px;
 }
 
-#result {
-  color: white;
+#outputText {
+  clear: both;
+  margin-top: 40px;
+  text-align: center;
   font-size: 30px;
+  color: white;
 }
 
+#result {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 50px;
+  color: white;
+}

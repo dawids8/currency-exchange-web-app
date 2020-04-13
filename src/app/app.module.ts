@@ -9,9 +9,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
-import {FormsModule} from '@angular/forms';
-
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import {FormsModule} from '@angular/forms';
     CurrencyComponent
   ],
   imports: [
+    NgbModule,
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -26,7 +27,9 @@ import {FormsModule} from '@angular/forms';
     MatInputModule,
     MatSelectModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CurrencyObject, CurrencyService} from '../service/currency.service';
 import {Currencies} from './currency.enum';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-currency',
@@ -9,28 +10,45 @@ import {Currencies} from './currency.enum';
 })
 export class CurrencyComponent implements OnInit {
 
+  inputAmountForm = new FormControl('', Validators.required);
+  fromCurrencyForm = new FormControl('', Validators.required);
+  toCurrencyForm = new FormControl('', Validators.required);
   currencyTypes: Array<string> = Object.keys(Currencies).filter(k => typeof Currencies[k as any] === 'number');
   currencyObject: CurrencyObject;
   amount: string;
   fromCurrency: string;
   toCurrency: string;
-  result: number;
+  outputText: string;
+  result: string;
 
   constructor(private currencyService: CurrencyService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.fromCurrency = 'EUR';
+    this.toCurrency = 'USD';
+  }
 
-  calculateCurrencyValue(): string {
+  calculateCurrencyValue(): void {
     this.loadExchangeRates(this.fromCurrency);
     let value = 0;
 
-    for (const ratesKey in this.currencyObject.rates) {
-      if (ratesKey === this.toCurrency) {
-        value = this.currencyObject.rates[ratesKey] * Number(this.amount);
+    Object.keys(this.currencyObject.rates).forEach((key: string) => {
+      if (key === this.toCurrency) {
+        value = this.currencyObject.rates[key] * Number(this.amount);
       }
-    }
+    });
 
-    this.result = value;
+    this.outputText = this.amount + ' ' + this.fromCurrency + ' =';
+    this.result = value + ' ' + this.toCurrency;
+  }
+
+  keyPress(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
+
+    const inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
   }
 
   private loadExchangeRates(fromCurrency: string) {
@@ -38,5 +56,4 @@ export class CurrencyComponent implements OnInit {
       this.currencyObject = value;
     });
   }
-
 }
