@@ -22,8 +22,8 @@ Application converts currency based on exchange rates published by the European 
 
 ** Before converting currency **
 
-Calculate button disabled till amount not provided and if currency types are different. Also, there is no possibility to provide
-letter into amount field.
+Converter is disabled until an integer is inputted and differing currencies are selected. 
+Also, letters and special characters are not a valid input
 
 <img src="/src/resources/before_convert.png"> 
 
