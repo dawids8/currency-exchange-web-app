@@ -20,14 +20,14 @@ Application converts currency based on exchange rates published by the European 
 
 ## Screenshots
 
-** Before converting currency **
+**Before converting currency**
 
 Converter is disabled until an integer is inputted and differing currencies are selected. 
 Also, letters and special characters are not a valid input
 
 <img src="/src/resources/before_convert.png"> 
 
-** After converting currency **
+**After converting currency**
 
 <img src="/src/resources/after_convert.png"> 
 
