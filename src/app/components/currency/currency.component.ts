@@ -18,8 +18,8 @@ export class CurrencyComponent implements OnInit {
   amount: string;
   fromCurrency: string;
   toCurrency: string;
-  outputText: string;
-  result: string;
+  outputValue: number;
+  result: number;
 
   constructor(private currencyService: CurrencyService) {}
 
@@ -38,8 +38,8 @@ export class CurrencyComponent implements OnInit {
       }
     });
 
-    this.outputText = this.amount + ' ' + this.fromCurrency + ' =';
-    this.result = value + ' ' + this.toCurrency;
+    this.outputValue = Number(this.amount);
+    this.result = value;
   }
 
   keyPress(event: any) {

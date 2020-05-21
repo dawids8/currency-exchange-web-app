@@ -54,7 +54,7 @@
 </div>
 
 <div id="disableButton" matTooltip="Enter amount to convert" matTooltipPosition="above"
-     [matTooltipDisabled]="amount">
+     [matTooltipDisabled]="!amount">
   <button mat-raised-button id="calculateButton"
           [disabled]="fromCurrency === toCurrency || !amount"
           (click)="calculateCurrencyValue()">
@@ -62,12 +62,12 @@
   </button>
 </div>
 
-<div id="outputText">
-   {{ outputText }}
+<div id="outputValue">
+   {{ outputValue | currency :fromCurrency:'symbol':'1.2-2' }}
 </div>
 
 <div id="result">
-   {{ result }}
+   {{ result | currency :toCurrency:'symbol':'1.2-2' }}
 </div>
 
 </body>
