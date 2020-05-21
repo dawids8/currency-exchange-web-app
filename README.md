@@ -29,7 +29,7 @@ Also, letters and special characters are not a valid input.
 
 **After converting currency**
 
-<img src="/src/resources/after_convert.png"> 
+<img src="/src/resources/after.png"> 
 
 ## Build
 
