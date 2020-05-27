@@ -14,7 +14,8 @@
            (keypress)="keyPress($event)"
            [(ngModel)]="amount"
            [formControl]="inputAmountForm" required>
-    <button mat-button *ngIf="amount" matSuffix mat-icon-button aria-label="Clear"
+    <button mat-button
+            *ngIf="amount" matSuffix mat-icon-button aria-label="Clear"
             (click)="amount=''">
       <mat-icon style="color: white"> close </mat-icon>
     </button>
@@ -53,21 +54,21 @@
 
 </div>
 
-<div id="disableButton" matTooltip="Enter amount to convert" matTooltipPosition="above"
-     [matTooltipDisabled]="!amount">
+<div id="button" matTooltip="Enter amount to convert" matTooltipPosition="above"
+     [matTooltipDisabled]="isButtonDisabled(fromCurrency, toCurrency, amount)">
   <button mat-raised-button id="calculateButton"
-          [disabled]="fromCurrency === toCurrency || !amount"
+          [disabled]="!isButtonDisabled(fromCurrency, toCurrency, amount)"
           (click)="calculateCurrencyValue()">
     Calculate
   </button>
 </div>
 
-<div id="outputValue">
-   {{ outputValue | currency :fromCurrency:'symbol':'1.2-2' }}
+<div id="inputValues">
+   {{ outputValue | currency:fromCurrency:'symbol':'1.2-2'}}
 </div>
 
-<div id="result">
-   {{ result | currency :toCurrency:'symbol':'1.2-2' }}
+<div id="outputValues">
+   {{ result | currency :toCurrency: 'symbol' :'1.2-2'}}
 </div>
 
 </body>

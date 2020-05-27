@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {CurrencyObject, CurrencyService} from '../service/currency.service';
+import {Component, OnInit} from '@angular/core';
+import {CurrencyService} from '../service/currency.service';
 import {Currencies} from './currency.enum';
 import {FormControl, Validators} from '@angular/forms';
+import {CurrencyObject} from '../models/currency-object';
 
 @Component({
   selector: 'app-currency',
@@ -26,6 +27,7 @@ export class CurrencyComponent implements OnInit {
   ngOnInit(): void {
     this.fromCurrency = 'EUR';
     this.toCurrency = 'USD';
+    this.calculateCurrencyValue();
   }
 
   calculateCurrencyValue(): void {
@@ -49,6 +51,10 @@ export class CurrencyComponent implements OnInit {
     if (event.keyCode !== 8 && !pattern.test(inputChar)) {
       event.preventDefault();
     }
+  }
+
+  isButtonDisabled(fromCurrency: string, toCurrency: string, amount: string): boolean {
+    return (!(fromCurrency === toCurrency || !amount || Number(amount) === 0));
   }
 
   private loadExchangeRates(fromCurrency: string) {
