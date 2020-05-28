@@ -13,13 +13,13 @@
     <input matInput maxlength="20" ng-minlength="1" type="text"
            (keypress)="keyPress($event)"
            [(ngModel)]="amount"
-           [formControl]="inputAmountForm" required>
+           [formControl]="inputFormControl.amountForm" required>
     <button mat-button
             *ngIf="amount" matSuffix mat-icon-button aria-label="Clear"
             (click)="amount=''">
       <mat-icon style="color: white"> close </mat-icon>
     </button>
-    <mat-error *ngIf="inputAmountForm.hasError('required')">
+    <mat-error *ngIf="inputFormControl.amountForm.hasError('required')">
       Please input some value
     </mat-error>
   </mat-form-field>
@@ -28,12 +28,12 @@
     <mat-label> From </mat-label>
     <mat-select [(ngModel)]="fromCurrency"
                 [placeholder]="fromCurrency"
-                [formControl]="fromCurrencyForm" required>
+                [formControl]="inputFormControl.fromCurrencyForm" required>
       <mat-option *ngFor="let type of currencyTypes" value="{{ type }}">
         {{ type }}
       </mat-option>
     </mat-select>
-    <mat-error *ngIf="fromCurrencyForm.hasError('required')">
+    <mat-error *ngIf="inputFormControl.fromCurrencyForm.hasError('required')">
       Please select currency type
     </mat-error>
   </mat-form-field>
@@ -42,12 +42,12 @@
     <mat-label> To </mat-label>
     <mat-select [(ngModel)]="toCurrency"
                 [placeholder]="toCurrency"
-                [formControl]="toCurrencyForm" required>
+                [formControl]="inputFormControl.toCurrencyForm" required>
       <mat-option *ngFor="let type of currencyTypes" value="{{ type }}">
         {{ type }}
       </mat-option>
     </mat-select>
-    <mat-error *ngIf="toCurrencyForm.hasError('required')">
+    <mat-error *ngIf="inputFormControl.toCurrencyForm.hasError('required')">
       Please select currency type
     </mat-error>
   </mat-form-field>
@@ -64,11 +64,11 @@
 </div>
 
 <div id="inputValues">
-   {{ outputValue | currency:fromCurrency:'symbol':'1.2-2'}}
+   {{ outputValue }}
 </div>
 
 <div id="outputValues">
-   {{ result | currency :toCurrency: 'symbol' :'1.2-2'}}
+   {{ result }}
 </div>
 
 </body>

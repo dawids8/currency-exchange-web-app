@@ -13,11 +13,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatTooltipModule} from '@angular/material/tooltip';
 
-import { LOCALE_ID } from '@angular/core';
-import { registerLocaleData } from '@angular/common';
-import localeFr from '@angular/common/locales/fr';
-registerLocaleData(localeFr);
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,9 +31,7 @@ registerLocaleData(localeFr);
     ReactiveFormsModule,
     MatTooltipModule,
   ],
-  providers: [
-    { provide: LOCALE_ID, useValue: 'fr-FR'},
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

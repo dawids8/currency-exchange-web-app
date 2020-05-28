@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {CurrencyService} from '../service/currency.service';
 import {Currencies} from './currency.enum';
-import {FormControl, Validators} from '@angular/forms';
 import {CurrencyObject} from '../models/currency-object';
+import {InputFormControl} from '../models/input.form.control';
 
 @Component({
   selector: 'app-currency',
@@ -11,23 +11,25 @@ import {CurrencyObject} from '../models/currency-object';
 })
 export class CurrencyComponent implements OnInit {
 
-  inputAmountForm = new FormControl('', Validators.required);
-  fromCurrencyForm = new FormControl('', Validators.required);
-  toCurrencyForm = new FormControl('', Validators.required);
-  currencyTypes: Array<string> = Object.keys(Currencies).filter(k => typeof Currencies[k as any] === 'number');
-  currencyObject: CurrencyObject;
+  inputFormControl: InputFormControl;
+  currencyTypes: Array<string>;
+  currencyObject?: CurrencyObject;
   amount: string;
   fromCurrency: string;
   toCurrency: string;
-  outputValue: number;
-  result: number;
+  outputValue: string;
+  result: string;
 
   constructor(private currencyService: CurrencyService) {}
 
   ngOnInit(): void {
     this.fromCurrency = 'EUR';
     this.toCurrency = 'USD';
-    this.calculateCurrencyValue();
+    this.loadExchangeRates(this.fromCurrency);
+
+    this.inputFormControl = new InputFormControl();
+
+    this.currencyTypes = Object.keys(Currencies).filter(k => typeof Currencies[k as any] === 'number');
   }
 
   calculateCurrencyValue(): void {
@@ -40,8 +42,14 @@ export class CurrencyComponent implements OnInit {
       }
     });
 
-    this.outputValue = Number(this.amount);
-    this.result = value;
+    this.outputValue = Number(this.amount) + ' ' + this.fromCurrency;
+    this.result = value.toFixed(2) + ' ' + this.toCurrency;
+  }
+
+  private loadExchangeRates(fromCurrency: string) {
+    this.currencyService.getValues(fromCurrency).subscribe(value => {
+      this.currencyObject = value;
+    });
   }
 
   keyPress(event: any) {
@@ -55,11 +63,5 @@ export class CurrencyComponent implements OnInit {
 
   isButtonDisabled(fromCurrency: string, toCurrency: string, amount: string): boolean {
     return (!(fromCurrency === toCurrency || !amount || Number(amount) === 0));
-  }
-
-  private loadExchangeRates(fromCurrency: string) {
-    this.currencyService.getValues(fromCurrency).subscribe(value => {
-      this.currencyObject = value;
-    });
   }
 }
